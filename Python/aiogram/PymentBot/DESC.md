@@ -17,27 +17,6 @@
     </li>
     <li>
         Если пользователь не найден то бот его добавляет в бд.
-
-```py
-async def add_user_if_not_exists(user_id: int, username: str):
-    """Добавляет нового пользователя в БД, если он ещё не существует"""
-    await ensure_db_pool()
-    async with db_pool.acquire() as conn:
-        async with conn.cursor() as cur:
-            # Проверяем, есть ли пользователь в БД
-            await cur.execute("SELECT COUNT(*) FROM users WHERE user_id = %s", (user_id,))
-            result = await cur.fetchone()
-
-            if result[0] == 0:  # Если пользователя нет, добавляем его
-                await cur.execute("""
-                    INSERT INTO users (user_id, username, subscription_end, status)
-                    VALUES (%s, %s, NULL, NULL)
-                """, (user_id, username))
-                logging.info(f"✅ Новый пользователь добавлен: {user_id} ({username})")
-                return True
-            return False
-```
-
     </li>
     <li>
         Пользователь выбирает тариф и сеть для оплаты (оплата по реквизитам, криптовалютой USDT)
@@ -68,4 +47,8 @@ async def add_user_if_not_exists(user_id: int, username: str):
 
 <p>
     По мимо описанного выше функционала, есть так же возможности задать вопрос админитраторам ( только 2 вопроса в день от пользователя), продлить подписку. Администратор может прямо в бота вывести список пользователей. Я ещё работаю над ботом, заказчик хочет расширять функционал.
+</p>
+
+<p>
+    Бот хоститься на VPS ubuntu от Beget. Олатил это удовольстиве заказчик, я настраивал, через подключение по ssh. Устанавливал enev Python, Необходимые библиоткеи, MySQL, phpmyadmin. Не без помощи ChatGPT, но тем не менее работал с командой строкой Linux'а.
 </p>
