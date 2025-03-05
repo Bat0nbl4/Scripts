@@ -1,5 +1,17 @@
 # Проект "Реестр книг"
 
+```php
+    public function index($id) {
+        $user = User::findOrFail($id);
+        if ($user->user_type == UserTypeEnum::Publisher->value) {
+            $books = SortController::PersonalBookSort($user->login);
+        } else {
+            $books = null;
+        }
+        return view('views/web/users/user', ['user' => $user, 'books' => $books]);
+    }
+```
+
 <p>
     Проект "Реестр книг" на фреймворке Laravel. Версия лавы 10. Это вообще мой первый сайт на php. Можно сказать что я одновременно изучал и php и Laravel. Тогда я думал что у меня хорошо получилось, а сейчас посмотрел код, аж стыдно его кидать)
 </p>
@@ -22,7 +34,8 @@
 <p>Сейчас чисто по интерестным моментам:</p>
 <p>
     Контролерры я делал для каждой модели. По две штуки. Первый файл для предоставления в web. Второй чисто api взаимодействие. Поясню на примере UserController и UserActionController. В первом все функции возвращяют исключительно страницы. К ним могут быть прекрепленны какие-то данные. Например функция index:
-    `php
+
+    ```php
     public function index($id) {
         $user = User::findOrFail($id);
         if ($user->user_type == UserTypeEnum::Publisher->value) {
@@ -32,6 +45,19 @@
         }
         return view('views/web/users/user', ['user' => $user, 'books' => $books]);
     }
-    `
+    ```
+
     Она возвращяет профиль пользователя с определённым id. Если пользователь является издателем, то также в его профиле будут отображатсья опубликованные им книги.
 </p>
+
+```php
+    public function index($id) {
+        $user = User::findOrFail($id);
+        if ($user->user_type == UserTypeEnum::Publisher->value) {
+            $books = SortController::PersonalBookSort($user->login);
+        } else {
+            $books = null;
+        }
+        return view('views/web/users/user', ['user' => $user, 'books' => $books]);
+    }
+```
