@@ -1,0 +1,457 @@
+/* импорт шрифтов */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Russo+One&display=swap');
+
+/* настройка основных тегов и классов */
+
+* {
+    &::-webkit-scrollbar {
+        width: 0.5vw;
+        min-width: 7px;
+        height: 0.5vw;
+        min-height: 7px;
+        background-color: var(--bg-color);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: steelblue;
+    }
+}
+
+html, body {
+    all: unset;
+
+    font-family: Apple, sans-serif;
+    width: 100%;
+    height: 100%;
+
+    /* переменные 70 130*/
+
+    --main-font-size: 12pt;
+    --bg-color: #e4eefc;
+    --2bg-color: #dae7fc;
+
+    /*-------------*/
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding: 0 5%;
+    background-color: #4682b4;
+    color: white;
+}
+
+.content {
+    flex: 1 0 auto;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+@media screen and (max-width: 1200px) {
+    .content {
+        width: 92%;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .content {
+        width: 98%;
+    }
+}
+
+footer {
+    overflow: hidden;
+    flex: 0 0 auto;
+    background: #1a202c;
+    color: white;
+    box-sizing: border-box;
+    padding: 0 10px;
+    margin-top: 30px;
+    & * {
+        font-family: "Unispace", monospace;
+        font-size: 10pt;
+    }
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0 5px;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+h2 {
+    margin: 14px 0;
+}
+
+h3, h4 {
+    margin: 8px 0;
+}
+
+/* --- TABLE --- */
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    /* -- Разделение even/odd -- */
+    & tr:nth-child(odd) {
+        background: var(--bg-color);
+    }
+    & tr:nth-child(even) {
+        background: var(--2bg-color);
+    }
+
+    & tr {
+        transition: 0.05s;
+        & td {
+            overflow: hidden;
+            padding: 2px;
+        }
+        &:hover {
+            transform: scale(1.01);
+            background: #c2dcff;
+        }
+    }
+}
+
+/* END настройка основных тегов и классов */
+/* настройка form */
+
+label {
+    display: flex;
+    overflow: hidden;
+}
+
+form {
+    box-sizing: border-box;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 400px;
+    background: var(--bg-color);
+    & input[type = 'text'], input[type = 'password'], input[type = 'email'] {
+        box-sizing: border-box;
+        flex: 1 0;
+        padding: 5px 10px;
+        height: 30px;
+        outline: unset;
+        border: 0 solid steelblue;
+        font-size: var(--main-font-size);
+        transition: 0.1s;
+        &:focus {
+            border: 2px solid steelblue;
+            transform: scale(1.02);
+        }
+    }
+    & select {
+        box-sizing: border-box;
+        flex: 1 0;
+        min-width: 200px;
+        padding: 5px 6px;
+        height: 30px;
+        outline: unset;
+        border: none;
+        font-size: var(--main-font-size);
+    }
+    & textarea {
+        flex: 1 unset;
+        height: 20vh;
+        padding: 5px 10px;
+        max-height: 400px;
+        box-sizing: border-box;
+        resize: vertical;
+        font-family: Apple, sans-serif;
+        font-size: var(--main-font-size);
+        border: none;
+        outline: none;
+        transition: 0.1s;
+        &:focus {
+            border: 2px solid steelblue;
+            transform: scale(1.02);
+        }
+    }
+    & input[type = 'checkbox'] {
+        appearance: none;
+        background: white;
+        display: flex;
+        padding: 0;
+        margin: 0;
+        width: 26px;
+        height: 26px;
+        border: 2px solid steelblue;
+        &:checked::after {
+            content: "";
+            display: block;
+            margin: auto;
+            width: 20px;
+            height: 20px;
+            background: steelblue;
+        }
+    }
+    & a {
+        margin: 10px 0 0 0;
+    }
+}
+
+/* прочие теги и классы */
+
+.logo {
+    padding-right: 20px;
+}
+
+.button {
+    border: none;
+    box-sizing: border-box;
+    padding: 5px 20px;
+    font-size: 13pt;
+    background: steelblue;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+        background: rgb(90, 150, 200);
+    }
+    &:active {
+        background: white;
+        color: steelblue;
+    }
+}
+
+.red-button {
+    background: orangered;
+    &:hover {
+        background: #ff652c;
+    }
+    &:active {
+        background: white;
+        color: orangered;
+    }
+}
+
+.disable {
+    display: none;
+}
+
+.hide {
+    @media screen and (max-width: 720px) {
+        display: none;
+    }
+}
+
+.entry {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin: 8px 0;
+}
+/* ЦВЕТА ТЕКСТА */
+.white {
+    color: white;
+}
+
+.blue {
+    color: steelblue;
+}
+
+.red {
+    color: #ff652c;
+}
+
+.green_panel {
+    color: #00d500;
+    background: rgba(35, 255, 0, 0.12);
+    padding: 10px;
+    border: solid 1px #00d500;
+}
+
+.error {
+    color: red;
+    font-size: 10pt;
+}
+
+/* END ЦВЕТА ТЕКСТА */
+.no-h-margin {
+    margin: 0;
+}
+
+.title {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.full-w {
+    width: 100%;
+}
+
+.max-w {
+    flex: 1 0;
+}
+
+.full-h {
+    flex: 1 0 auto;
+}
+
+.info {
+    background: var(--bg-color);
+    display: flex;
+    flex: 1 0;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.small_content {
+    width: 60%;
+    max-width: 500px;
+    min-width: 400px;
+    margin: 0 auto;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.no-wrap {
+    flex-wrap: nowrap;
+    @media screen and (max-width: 1920px) {
+        flex-direction: column;
+    }
+}
+
+.gap {
+    margin: 5px 0;
+    gap: 5px;
+}
+
+.card {
+    box-sizing: border-box;
+    max-width: 350px;
+    min-width: 300px;
+    flex: 1 0;
+    padding: 5px;
+    overflow: hidden;
+    transition: 0.1s;
+    color: black;
+    &:hover {
+        transform: scale(1.008);
+        background: #d3e5fa;
+    }
+}
+
+img {
+    width: 100%;
+}
+
+.img {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    height: 100%;
+    background: none;
+    margin: 0 auto;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.left {
+    margin-left: auto !important;
+    justify-content: flex-start;
+}
+
+.white-bg {
+    background: white;
+}
+
+.description {
+    height: 50px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.inline {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.inline-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.margin-left {
+    margin-left: 8px;
+}
+
+/* --- пагинация --- */
+
+& .pagination {
+    font-size: var(--main-font-size);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    padding: 5px 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+    background: var(--bg-color);
+    text-align: center;
+
+    & .page-item {
+        & .page-link {
+            padding: 0 2px;
+            box-sizing: border-box;
+            color: steelblue;
+            font-weight: bold;
+        }
+        &:hover {
+            border-bottom: solid 2px steelblue;
+        }
+    }
+
+    & .disabled {
+        & .page-link {
+            color: #d3e5fa;
+        }
+        border: none !important;
+    }
+
+    & .active {
+        border: solid 2px steelblue;
+        & .page-link {
+            padding: 0;
+        }
+    }
+}
