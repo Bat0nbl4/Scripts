@@ -7,7 +7,7 @@
 <h2>О бд:</h2>
 
 <p>
-    В этом проекте лишь две таблицы. Users и Payments. Так что запросы довольно типовые. Они прописаны <a href="https://github.com/Bat0nbl4/Scripts/blob/main/Python/aiogram/PymentBot/db.py">в этом фале</a>
+    В этом проекте лишь две таблицы. Users и Payments. Так что запросы довольно типовые. Они прописаны <a href="https://github.com/Bat0nbl4/Scripts/blob/main/Python/aiogram/PymentBot/bot/db.py">в этом фале</a>
 </p>
 
 <h2>Базовый сценарий работы бота: </h2>

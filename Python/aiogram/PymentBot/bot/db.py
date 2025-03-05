@@ -37,6 +37,7 @@ async def close_db_pool():
         db_pool.close()
         await db_pool.wait_closed()
         db_pool = None
+        
 async def ensure_db_pool():
     """Проверяет, инициализирован ли пул соединений с БД."""
     global db_pool
@@ -161,7 +162,6 @@ async def approve_payment(hash_code: str, admin_id: int, days:int = 30):
 
     return user_id, new_expiry_date
 
-
 async def get_payment_info(hash_code: str):
     """Получает информацию о платеже по хешу."""
     await ensure_db_pool()
@@ -171,6 +171,7 @@ async def get_payment_info(hash_code: str):
                 SELECT * FROM payments WHERE hash_code = %s
             """, (hash_code,))
             return await cur.fetchone()  # Теперь это словарь
+
 async def save_short_key(hash_code: str, short_key: str):
     """Сохраняет короткий ID в базу данных"""
     await ensure_db_pool()
@@ -180,6 +181,7 @@ async def save_short_key(hash_code: str, short_key: str):
                 "UPDATE payments SET short_key = %s WHERE hash_code = %s",
                 (short_key, hash_code)
             )
+
 async def get_short_key(hash_code: str):
     """Получает `short_key` по `hash_code`"""
     await ensure_db_pool()
@@ -191,6 +193,7 @@ async def get_short_key(hash_code: str):
             )
             result = await cur.fetchone()
             return result["short_key"] if result else None
+
 async def get_hash_by_short_key(short_key: str):
     """Получает `hash_code` по `short_key`"""
     await ensure_db_pool()
@@ -213,6 +216,7 @@ async def get_payment_user(hash_code: str):
                 SELECT user_id FROM payments WHERE hash_code = %s
             """, (hash_code,))
             return await cur.fetchone()
+
 async def get_admin_name(user_id: int, bot: Bot):
     """Получает имя администратора по user_id через Telegram API"""
     await ensure_db_pool()
