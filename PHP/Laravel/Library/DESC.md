@@ -19,4 +19,19 @@
 
 <p>Там конечно было болше пунктов и описаны они были подробнее, но это то что я помню.</p>
 
-![Авторизация](images/auth.png)
+<p>Сейчас чисто по интерестным моментам:</p>
+<p>
+    Контролерры я делал для каждой модели. По две штуки. Первый файл для предоставления в web. Второй чисто api взаимодействие. Поясню на примере UserController и UserActionController. В первом все функции возвращяют исключительно страницы. К ним могут быть прекрепленны какие-то данные. Например функция index:
+    <pre>
+        public function index($id) {
+            $user = User::findOrFail($id);
+            if ($user->user_type == UserTypeEnum::Publisher->value) {
+                $books = SortController::PersonalBookSort($user->login);
+            } else {
+                $books = null;
+            }
+            return view('views/web/users/user', ['user' => $user, 'books' => $books]);
+        }
+    </pre>
+    Она возвращяет профиль пользователя с определённым id. Если пользователь является издателем, то также в его профиле будут отображатсья опубликованные им книги.
+</p>
