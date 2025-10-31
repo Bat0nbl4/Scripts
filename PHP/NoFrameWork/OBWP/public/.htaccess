@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+php_value session.gc_maxlifetime 3600
+RewriteRule ^ index.php [QSA,L]
